@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}Account{% endblock %}
+
+{% block main %}
+    
+<!-- Page title -->
+    <div class="title">
+        <h1>Account</h1>
+    </div>
+    
+
+    <div class="section account_form">
+        <div>
+            <p style="font-weight: 500;">Set weekly goal (km)</p>
+        </div>
+        <div>
+            <form method="POST" id="goal_form">
+                {{ form.hidden_tag() }}
+                {{ form.goal(class="form-control text-center", id="goal_form") }}
+                {{ form.submit(class="btn btn-secondary mt-2") }}
+            </form>
+        </div>
+    </div>
+
+
+    <div class="section">
+        <p>Logged in to account: <strong>{{ email }}</strong></p>
+    </div>
+
+    <div class="section">
+        {% if current_user.strava_username == "0" %}
+        <p id="connect_strava">Please sign in with your Strava account to access your data</p>
+        {% else %}
+        <p>Connected to strava account: <strong>{{ current_user.strava_username }}</strong></p>
+        {% endif %}
+    </div>
+
+    <div class="section">
+        <a href="/strava_login"><img src="/static/imgs/btn_strava_connectwith_orange.svg" style="height: 3rem;"></a>
+    </div>
+    
+
+{% endblock %}

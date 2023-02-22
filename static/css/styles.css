@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+/* ========= nav bar ========= */
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-left: 1rem;
+    margin-right: 2rem;
+}
+.navbar-brand:hover {
+    color: #35CFDE;
+}
+
+.navbar-toggler {
+    margin-right: 1rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    font-size: 1.3rem;
+}
+.nav-link:hover {
+    color: #35CFDE;
+}
+
+.navbar-collapse {
+    text-align: center;
+}
+
+.navbar {
+    background-color: #f1f1f1;
+}
+
+
+/* =============== Global ================ */
+.section {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.title {
+    text-align: center;
+    padding: 1rem;
+    background-color: #35CFDE;
+    color: #f1f1f1;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 800px) {
+    .section div {
+        max-width: 700px;
+    }
+}
+
+/* =============== Index ================ */
+.get_started_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.get_started_buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.get_started_buttons a {
+    width: 100px;
+    margin: 0.5rem;
+}
+
+
+/* ============= Login ================*/
+
+#login_form {
+    max-width: 600px;
+}
+
+/* ============= Signup ===============*/
+
+#signup_link {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+}
+#signup_link:hover {
+    color: grey;
+}
+
+#signup_form {
+    max-width: 600px;
+}
+
+/* ================= Data ================= */
+
+.circle_section {
+    display: flex;
+    justify-content: center;
+}
+
+/* progress circle */
+
+.progress_section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress_bar {
+    width: 180px;
+    height: 180px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.outer {
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+circle {
+    fill: none;
+    stroke: #35CFDE;
+    stroke-width: 20px;
+    stroke-dasharray: 440;
+    stroke-dashoffset: 440;
+    animation: anim 1.5s linear forwards;
+}
+
+svg {
+    position: absolute;
+}
+
+:root {
+    --my-dashoffset: 220;
+}
+
+@keyframes anim {
+    100% {
+        stroke-dashoffset: var(--my-dashoffset);
+    }
+}
+
+#progress_percent {
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+
+.data_section2 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+}
+
+@media (min-width: 800px) {
+    .data_section2 {
+        max-width: 700px;
+        margin: auto;
+        flex-direction: row;
+    }
+}
+
+.data_section2 div {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: rgb(240, 240, 240);
+    
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#remaining {
+    background-color: #34e49b;
+}
+
+.boxes_section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.data_boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+}
+
+.box {
+    background-color: #35CFDE;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    margin: 0.5rem;
+    cursor: pointer;
+}
+
+@media (min-width:800px) {
+    .box {
+        margin: 1rem;
+    }
+    .boxes_section {
+        padding-top: 3rem;
+    }
+}
+
+.box:hover {
+    filter: brightness(80%);
+}
+
+.data_table {
+    display: flex;
+    flex-direction: column;
+}
+
+.table_container {
+    display: flex;
+    justify-content: center;
+}
+
+.table_item {
+    max-width: 500px;
+    text-align: left;
+}
+
+
+/* ============== Account =============== */
+
+.account_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.account_form div {
+    display: flex;
+    justify-content: center;
+}
+
+#goal_form {
+    max-width: 100px;
+}
+
+#connect_strava {
+    color: #fc4c02;
+}
+
+/* ============== Footer ================*/
+
+#footer_logo {
+    height: 1.7rem;
+}
+

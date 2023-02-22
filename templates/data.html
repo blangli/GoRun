@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+
+{% block title %}Data{% endblock %}
+
+{% block main %}
+    
+    <div class="title">
+        <h1>Data</h1>
+    </div>
+
+    <!-- Circle progress bar animation-->
+    
+    {% if goal > 0 and distance_count > 0 %}
+        <div class="section progress_section">
+            <div class="progress_bar">
+                <div class="outer">
+                    <div class="inner">
+                        <div id="progress_percent">{{ percentage }}%</div>
+                    </div>
+                </div>
+            </div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
+                <circle cx="80" cy="80" r="70" transform="rotate(-90 80 80)" stroke-linecap="round" />
+            </svg>
+        </div>
+    {% endif %}
+    
+
+    <!-- Goal + remaining distance -->
+    <div class="section data_section2">
+
+        {% if goal == 0 %}
+                <a href="/account" class="btn btn-light mt-3">Set weekly goal</a>
+        {% else %}
+        <div>
+            <h2><strong>{{ distance_count_str }}</strong>km /  <strong>{{ goal_str }}</strong>km</h2>
+        </div>
+        <div id="remaining">
+            {% if remaining_distance > 0 %}
+                <h2><strong>{{ remaining_distance_str }}</strong>km  to go!</h2>
+            {% else %}
+                <h2><strong>Goal Met!</strong></h2>
+            {% endif %}
+        </div>
+        {% endif %}
+
+    </div>
+
+
+    <!-- 7 boxes for days of the week, clickable to reveal more information about each day's activities 
+    showHide(d) funtion passes in the day of the week (index) and shows the table with that day's activities -->
+
+    <div class="section boxes_section">
+        <div class="data_boxes">
+            <div>
+                <div class="box" id="mon" onclick="showHide(0)">Mon</div>
+                <p class="mt-2">{{ daily_distance[0] }}</p>
+            </div>
+            <div>
+                <div class="box" id="tue" onclick="showHide(1)">Tue</div>
+                <p class="mt-2">{{ daily_distance[1] }}</p>
+            </div>
+            <div>
+                <div class="box" id="wed" onclick="showHide(2)">Wed</div>
+                <p class="mt-2">{{ daily_distance[2] }}</p>
+            </div>
+            <div>
+                <div class="box" id="thu" onclick="showHide(3)">Thu</div>
+                <p class="mt-2">{{ daily_distance[3] }}</p>
+            </div>
+            <div>
+                <div class="box" id="fri" onclick="showHide(4)">Fri</div>
+                <p class="mt-2">{{ daily_distance[4] }}</p>
+            </div>
+            <div>
+                <div class="box" id="sat" onclick="showHide(5)">Sat</div>
+                <p class="mt-2">{{ daily_distance[5] }}</p>
+            </div>
+            <div>
+                <div class="box" id="sun" onclick="showHide(6)">Sun</div>
+                <p class="mt-2">{{ daily_distance[6] }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extra info for each days activities shown in a table below. Shows / hides on click of the weekday boxes -->
+    <div class="section data_table">
+        <div class="table_container">   
+            <!-- Loop through each day of the week --> 
+            {% for i in range(7) %}
+                <!-- Create heading element, to store table's day of the week -->
+                <div class="table_item" id="weekday_{{ i }}" style="display: none;">
+                    <p style="font-weight: 700;">{{ weekdays[i] }}</p>
+                </div>
+        </div>
+        <div class="table_container">
+                <!-- If there are activities in the day, create a table to put them in -->
+                {% if activity_list[i]|length > 0 %}
+                    <div class="table_item" id="data_table_{{ i }}" style="display: none;">       
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Distance</th>
+                                    <th scope="col">Time</th>
+                                </tr>
+                            </thead>
+                            <!-- Loop through each activity in that day, put data into table -->
+                            {% for j in range(activity_list[i]|length) %}
+                                <tbody>
+                                    <tr>
+                                        <td id="table_name">{{ activity_list[i][j].Name }}</td>
+                                        <td id="table_distance">{{ activity_list[i][j].Distance }} km</td>
+                                        <td id="table_time">{{ activity_list[i][j].Time }} h</td>
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                        </table>  
+                    </div>
+                <!-- If no activities in the day, show 'no activities recorded'-->
+                {% else %}
+                    <div class="table_item" id="data_table_{{ i }}" style="display: none;">
+                        <p>No activities recorded</p>
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+        </div>
+    </div>    
+        
+
+    <script src="/static/js/data.js"></script>
+    
+{% endblock %}
